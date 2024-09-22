@@ -58,3 +58,55 @@ submitBtn.addEventListener('click', (e)=>{
         }
     }
 })
+
+//this section is for the t-shirt preview
+        function updatePreview() {
+            var text = document.getElementById("designText").value;
+            var color = document.getElementById("textColor").value;
+            var size = document.getElementById("textSize").value;
+        
+            var tshirtColor = document.getElementById("tshirtColor").value;
+            var preview = document.getElementById("textPreview");
+            var vertical = document.getElementById("vertical").checked;
+
+            // Apply styles to preview text
+            preview.style.color = color;
+            preview.style.fontSize = size + "px";
+          
+
+            // Split text into lines with maximum 24 characters each
+            if (vertical) {
+                var lines = [];
+                for (var i = 0; i < 10; i++) {
+                    lines.push(text.charAt(i));
+                }
+            } else {
+                var lines = [];
+                for (var i = 0; i < text.length; i += 20) {
+                    lines.push(text.substring(i, i + 20));
+                }
+            }
+
+            // Join lines with line breaks
+            preview.innerHTML = lines.join("<br>");
+
+            // Set T-shirt preview background based on selected color
+            var tshirtPreview = document.querySelector('.tshirt-preview');
+            switch (tshirtColor) {
+                case 'white':
+                    tshirtPreview.style.backgroundImage = "url('https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/white.png')";
+                    break;
+                case 'black':
+                    tshirtPreview.style.backgroundImage = "url('https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/black.png')";
+                    break;
+                case 'blue':
+                    tshirtPreview.style.backgroundImage = "url('https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/blue.png')";
+                    break;
+                case 'red':
+                    tshirtPreview.style.backgroundImage = "url('https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/red.png')";
+                    break;
+                default:
+                    tshirtPreview.style.backgroundImage = "url('https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/white.png')";
+                    break;
+            }
+        }
